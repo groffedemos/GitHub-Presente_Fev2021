@@ -27,7 +27,7 @@ namespace ConversorDistancias.Controllers
             if (ModelState.IsValid)
             {
                 distancias.DistanciaKm = distancias.DistanciaMilhas * 1.609; // Simulação de falha
-                //distancias.DistanciaKm = Math.Round(distancias.DistanciaMilhas.Value * 1.609, 3);
+                distancias.DistanciaKm = Math.Round(distancias.DistanciaMilhas.Value * 1.609, 3);
                 _logger.LogInformation(
                     $"{distancias.DistanciaMilhas} milhas = {distancias.DistanciaKm} Km");
                 return View(distancias);
