@@ -31,15 +31,15 @@ jobs:
         cd ${{ env.CAMINHO_PROJETO_WEBAPP }}
         docker build . --file Dockerfile --tag ${{ env.IMAGEM_DOCKERHUB }}:latest
 
-    #- name: Criação de container para testes com o site
-    #  run: |
-    #    docker run --name site-testes -p 1234:80 -d ${{ env.IMAGEM_DOCKERHUB }}:latest
-    #    docker container ls
+    - name: Criação de container para testes com o site
+      run: |
+        docker run --name site-testes -p 1234:80 -d ${{ env.IMAGEM_DOCKERHUB }}:latest
+        docker container ls
 
-    #- name: Testes com Selenium WebDriver + Chrome Driver
-    #  env:
-    #    UrlTelaConversaoDistancias: http://localhost:1234
-    #  run: dotnet test ${{ env.CAMINHO_PROJETO_TESTES }} --verbosity minimal --logger:"html;LogFileName=resultado-testes.html"
+    - name: Testes com Selenium WebDriver + Chrome Driver
+      env:
+        UrlTelaConversaoDistancias: http://localhost:1234
+      run: dotnet test ${{ env.CAMINHO_PROJETO_TESTES }} --verbosity minimal --logger:"html;LogFileName=resultado-testes.html"
       
     - name: Login no Docker Hub
       uses: docker/login-action@v1.8.0
